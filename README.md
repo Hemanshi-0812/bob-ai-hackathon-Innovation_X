@@ -8,7 +8,7 @@
 
 | Field | Value |
 |---|---|
-| **Team Name** | [Your Team Name] |
+| **Team Name** | [Innovation X] |
 | **Track** | [AI / DevOps / Sustainability / Open] |
 | **Team Lead** | [Name] — [email@ibm.com] |
 | **Members** | [Name 1], [Name 2], [Name 3] |
