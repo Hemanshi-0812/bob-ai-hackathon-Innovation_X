@@ -31,16 +31,16 @@ The system combines rule-based correlation, risk scoring, and AI-assisted analys
 
 ## ✨ Key Features
 
-- **Unified Alert Dashboard:** View security alerts from different sources in one centralized interface.
-- **Alert Normalization:** Converts alerts with different structures and fields into a common format for consistent processing.
-- **Threat Correlation:** Identifies relationships between alerts using factors such as source IP, destination IP, affected assets, alert type, and time proximity.
-- **Incident Grouping:** Groups related alerts into a single incident to reduce duplicate investigation work.
-- **Risk-Based Alert Prioritisation:** Calculates a risk score using factors such as severity, affected assets, recurrence, and related alerts and categorizes alerts as Critical, High, Medium, or Low.
-- **AI-Powered Alert Explanation:** Generates a simple explanation of why an alert or incident is considered important.
-- **Recommended Actions:** Provides suggested investigation or response actions based on the detected threat context.
-- **Incident Investigation View:** Allows analysts to inspect an incident, view related alerts, understand the risk score, and review the AI-generated analysis.
-- **Search and Filtering:** Analysts can filter alerts by severity, source, status, alert type, and priority.
-- **Security Analytics:** Dashboard metrics and visualizations provide an overview of alert volumes, priorities, and incidents.
+- **📊 Executive Dashboard:** Provides a centralized real-time overview of shipments, active disruptions, high-risk shipments, fleet utilization, idle vehicles, and cold-chain conditions.
+- **📦 Shipment Management:** Enables users to view, track, and manage shipment details including origin, destination, status, ETA, priority, cargo type, and assigned vehicle.
+- **🚨 Disruption Detection:** Detects potential supply-chain disruptions such as severe weather, road closures, port delays, accidents, and other events that may affect transportation routes.
+- **🎯 Affected Shipment & Risk Analysis:**Identifies shipments affected by a disruption and calculates their risk based on factors such as disruption severity, shipment priority, delay, route impact, and cargo sensitivity.
+- **🛣️ AI Rerouting Recommendation:** Analyzes affected routes and recommends alternative routes to reduce delays, disruption impact, and transportation risk.
+- **🚚 Idle Fleet Detection:** Identifies vehicles that are idle, underutilized, or available for redeployment based on their current location, status, and assigned workload.
+- **🔄 Fleet Redeployment Recommendation::** Recommends suitable available vehicles for affected or high-priority shipments by considering factors such as vehicle location, capacity, availability, and shipment requirements.
+- **❄️ IoT Cold-Chain Monitoring:** Monitors IoT sensor data such as temperature and other environmental conditions for temperature-sensitive shipments.
+- **🌡️ Temperature Excursion & Severity Detection:** Detects temperature values outside the acceptable range and classifies the excursion based on severity and potential impact on the cargo.
+- **🤖 IBM Bob AI Copilot:** Provides an interactive AI assistant that allows users to ask questions about shipments, disruptions, fleet utilization, risks, and recommended actions using natural language.
 
 ---
 
@@ -49,7 +49,8 @@ The system combines rule-based correlation, risk scoring, and AI-assisted analys
 | Category | Technologies |
 |---|---|
 | **Languages** | JavaScript, HTML, CSS |
-| **Frameworks** | React |
+| **Frontend** | React |
+| **Backend** | Node.js, Express.js |
 | **IBM Technologies** |  Claude, IBM watsonx.ai, IBM Bob |
 | **Databases** | MongoDB |
 | **Other** | GitHub, Vite, IBM Bob |
@@ -75,8 +76,6 @@ The system combines rule-based correlation, risk scoring, and AI-assisted analys
 ---
 
 ## ⚡ How to Run
-
-> **Copy these exact steps from your [`docs/setup-guide.md`](docs/setup-guide.md)**
 
 ```bash
 # 1. Clone the repo
@@ -132,8 +131,6 @@ Open the local URL displayed by Vite in your browser.
 ---
 
 ## ⚠️ Known Limitations
-
-> Be honest — judges appreciate transparency over overclaiming.
 
 - The current prototype uses simulated/sample security alert data rather than direct production SIEM and sensor integrations.
 - Threat correlation and risk scoring are designed as a hackathon prototype and would require further validation with real-world security datasets.
