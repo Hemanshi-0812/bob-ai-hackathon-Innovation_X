@@ -1,4 +1,4 @@
-# 🚀 [Your Project Title Here]
+# 🚀  Supply Chain Disruption Assistant & Fleet Utilisation Optimizer
 
 > ⚠️ **Replace everything in `[ ]` brackets with your actual content before submission.**
 
@@ -8,10 +8,10 @@
 
 | Field | Value |
 |---|---|
-| **Team Name** | [Innovation X] |
-| **Track** | [AI / DevOps / Sustainability / Open] |
-| **Team Lead** | [Name] — [email@ibm.com] |
-| **Members** | [Name 1], [Name 2], [Name 3] |
+| **Team Name** | Innovation X |
+| **Track** | AI |
+| **Team Lead** | Hemanshi Bhayani — [email@ibm.com] |
+| **Members** | Vedi Dhameliya, Heta Rajani, Tushya Patel |
 
 ---
 
@@ -19,7 +19,9 @@
 
 > In 2–3 sentences: What problem does your project solve? Who experiences this problem?
 
-[Describe the real-world problem your project addresses. Be specific about who the user is and what pain point they face.]
+Security analysts receive a large number of alerts every day from different sources such as SIEM systems, cyber sensors, intelligence feeds, and security monitoring tools. Because these alerts are often fragmented, duplicated, and difficult to prioritize, analysts can spend significant time manually investigating them and may miss critical threats.
+
+Our project addresses this problem by providing a centralized intelligent assistant that correlates related alerts, identifies potentially important incidents, prioritizes them according to risk, and provides understandable insights for security analysts.
 
 ---
 
@@ -27,17 +29,24 @@
 
 > In 2–3 sentences: What did you build? How does it solve the problem above?
 
-[Describe your solution clearly. Explain the core mechanism — what makes it work.]
+We built an AI-powered Threat Intelligence Correlation & Alert Prioritisation Assistant that collects security alerts from multiple sources, normalizes and correlates related events, and assigns a risk-based priority to help analysts focus on the most important incidents first.
+
+The system combines rule-based correlation, risk scoring, and AI-assisted analysis to provide alert explanations, incident summaries, and recommended next actions through an interactive security dashboard.
 
 ---
 
 ## ✨ Key Features
 
-- **Feature 1:** [Brief description — e.g., "Real-time anomaly detection using watsonx.ai"]
-- **Feature 2:** [Brief description]
-- **Feature 3:** [Brief description]
-- **Feature 4:** [Optional]
-- **Feature 5:** [Optional]
+- **Unified Alert Dashboard:** View security alerts from different sources in one centralized interface.
+- **Alert Normalization:** Converts alerts with different structures and fields into a common format for consistent processing.
+- **Threat Correlation:** Identifies relationships between alerts using factors such as source IP, destination IP, affected assets, alert type, and time proximity.
+- **Incident Grouping:** Groups related alerts into a single incident to reduce duplicate investigation work.
+- **Risk-Based Alert Prioritisation:** Calculates a risk score using factors such as severity, affected assets, recurrence, and related alerts and categorizes alerts as Critical, High, Medium, or Low.
+- **AI-Powered Alert Explanation:** Generates a simple explanation of why an alert or incident is considered important.
+- **Recommended Actions:** Provides suggested investigation or response actions based on the detected threat context.
+- **Incident Investigation View:** Allows analysts to inspect an incident, view related alerts, understand the risk score, and review the AI-generated analysis.
+- **Search and Filtering:** Analysts can filter alerts by severity, source, status, alert type, and priority.
+- **Security Analytics:** Dashboard metrics and visualizations provide an overview of alert volumes, priorities, and incidents.
 
 ---
 
