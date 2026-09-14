@@ -19,7 +19,13 @@ export function requireAuth(req, res, next) {
 
 export function signToken(user) {
   return jwt.sign(
-    { sub: user._id?.toString() || user.email, email: user.email, name: user.name, role: user.role },
+    {
+      sub: user._id?.toString() || user.email,
+      email: user.email,
+      name: user.name,
+      role: user.role,
+      region: user.region || "global",
+    },
     process.env.JWT_SECRET || "dev-secret",
     { expiresIn: process.env.JWT_EXPIRES_IN || "8h" }
   );

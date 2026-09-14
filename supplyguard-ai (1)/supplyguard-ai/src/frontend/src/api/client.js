@@ -16,10 +16,14 @@ async function request(path, options = {}) {
   });
 
   if (res.status === 401) {
+    const body = await res.json().catch(() => ({}));
+    if (path.startsWith("/auth/login") || path.startsWith("/auth/register")) {
+      throw new Error(body.error || "Authentication failed. Please check your credentials.");
+    }
     localStorage.removeItem("sg_token");
     localStorage.removeItem("sg_user");
     window.location.href = "/login";
-    throw new Error("Unauthorized");
+    throw new Error(body.error || "Session expired. Please log in again.");
   }
 
   if (!res.ok) {
@@ -30,14 +34,25 @@ async function request(path, options = {}) {
 }
 
 export const api = {
-  login: (email, password) =>
-    request("/auth/login", { method: "POST", body: JSON.stringify({ email, password }) }),
-  register: (name, email, password) =>
-    request("/auth/register", { method: "POST", body: JSON.stringify({ name, email, password }) }),
+  login: (email, password, role = "admin") =>
+    request("/auth/login", { method: "POST", body: JSON.stringify({ email, password, role }) }),
+  switchRole: (role) =>
+    request("/auth/switch-role", { method: "POST", body: JSON.stringify({ role }) }),
+  register: (name, email, password, role = "shipment_user") =>
+    request("/auth/register", { method: "POST", body: JSON.stringify({ name, email, password, role }) }),
 
   getDashboardSummary: () => request("/dashboard/summary"),
+  addDashboardData: (payload) =>
+    request("/dashboard/data", { method: "POST", body: JSON.stringify(payload) }),
 
-  getShipments: () => request("/shipments"),
+  getShipments: (shipper) => request(`/shipments${shipper ? `?shipper=${encodeURIComponent(shipper)}` : ""}`),
+  getShipmentById: (id) => request(`/shipments/${id}`),
+  createShipment: (payload) =>
+    request("/shipments", { method: "POST", body: JSON.stringify(payload) }),
+  updateShipment: (id, updates) =>
+    request(`/shipments/${id}`, { method: "PATCH", body: JSON.stringify(updates) }),
+  deleteShipment: (id) =>
+    request(`/shipments/${id}`, { method: "DELETE" }),
   getRegionCoords: () => request("/shipments/map/coords"),
 
   getDisruptions: () => request("/disruptions"),
@@ -57,4 +72,9 @@ export const api = {
   chatWithBob: (message) =>
     request("/copilot/chat", { method: "POST", body: JSON.stringify({ message }) }),
   getCopilotStatus: () => request("/copilot/status"),
+
+  getSimulatorStatus: () => request("/simulator/status"),
+  triggerSimulatorTick: () => request("/simulator/tick", { method: "POST" }),
+  toggleSimulator: () => request("/simulator/toggle", { method: "POST" }),
+  resetSimulatorDatabase: () => request("/simulator/reset", { method: "POST" }),
 };

@@ -14,6 +14,41 @@ export async function getShipments() {
   return mock.shipments;
 }
 
+export async function addShipment(shipmentData) {
+  if (state.mongoConnected) {
+    const doc = await Shipment.create(shipmentData);
+    return toPlain(doc);
+  }
+  mock.shipments.unshift(shipmentData);
+  return shipmentData;
+}
+
+export async function deleteShipment(shipmentId) {
+  if (state.mongoConnected) {
+    const res = await Shipment.deleteOne({ shipmentId });
+    return res.deletedCount > 0;
+  }
+  const idx = mock.shipments.findIndex((s) => s.shipmentId === shipmentId);
+  if (idx !== -1) {
+    mock.shipments.splice(idx, 1);
+    return true;
+  }
+  return false;
+}
+
+export async function updateShipment(shipmentId, updates) {
+  if (state.mongoConnected) {
+    const doc = await Shipment.findOneAndUpdate({ shipmentId }, { $set: updates }, { new: true });
+    return doc ? toPlain(doc) : null;
+  }
+  const idx = mock.shipments.findIndex((s) => s.shipmentId === shipmentId);
+  if (idx !== -1) {
+    mock.shipments[idx] = { ...mock.shipments[idx], ...updates };
+    return mock.shipments[idx];
+  }
+  return null;
+}
+
 export async function getFleetAssets() {
   if (state.mongoConnected) return (await FleetAsset.find()).map(toPlain);
   return mock.fleetAssets;

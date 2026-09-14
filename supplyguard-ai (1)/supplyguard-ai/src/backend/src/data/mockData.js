@@ -88,12 +88,34 @@ export const disruptions = [
     estimatedDurationHours: 720,
     severity: "critical",
   },
+  {
+    disruptionId: "DIS-1004",
+    type: "weather",
+    region: "US-West",
+    description: "Heavy fog and inbound congestion at Long Beach terminal",
+    startedAt: new Date(now - 18 * HOUR),
+    estimatedDurationHours: 72,
+    severity: "high",
+  },
 ];
 
-export const shipments = Array.from({ length: 25 }, (_, i) => {
+export const shipments = Array.from({ length: 200 }, (_, i) => {
   const [origin, destination] = sample(REGIONS, 2);
   const route = [origin, pick(REGIONS), destination];
   const isColdChain = i % 4 === 0;
+  const startedAt = new Date(now - randInt(6, 168) * HOUR);
+  const eta = new Date(now + randInt(12, 360) * HOUR);
+  const deadlineAt = new Date(eta.getTime() + randInt(2, 72) * HOUR);
+  const hoursElapsed = Math.max(1, Math.round((now - startedAt.getTime()) / HOUR));
+
+  // The first 8 shipments belong specifically to the demo Shipper User
+  const isDemoUserShipment = i < 8;
+  const createdBy = isDemoUserShipment ? "shipmentuser@supplyguard.ai" : "admin@supplyguard.ai";
+  const userId = isDemoUserShipment ? "demo-shipment-user" : "system-admin";
+  const statusChoices = ["In Transit", "In Transit", "Delayed", "Delivered"];
+  const status = isDemoUserShipment ? statusChoices[i % statusChoices.length] : pick(["In Transit", "Delayed", "Delivered"]);
+  const priorities = ["Standard", "Express", "Urgent", "Critical"];
+
   return {
     shipmentId: `SHP-${2000 + i + 1}`,
     origin,
@@ -107,7 +129,15 @@ export const shipments = Array.from({ length: 25 }, (_, i) => {
       : pick(["Electronics", "Automotive parts", "Retail goods", "Industrial equipment"]),
     cargoValueUsd: randFloat(50000, 750000, 2),
     isColdChain,
-    eta: new Date(now + randInt(12, 240) * HOUR),
+    startedAt,
+    eta,
+    deadlineAt,
+    hoursElapsed,
+    createdBy,
+    userId,
+    status,
+    priority: priorities[i % priorities.length],
+    notes: isDemoUserShipment ? `Customer reference #${1000 + i}. Temperature-monitored corridor.` : "",
   };
 });
 

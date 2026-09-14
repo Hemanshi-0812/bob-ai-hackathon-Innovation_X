@@ -6,6 +6,7 @@ import FleetAsset from "../models/FleetAsset.js";
 import Disruption from "../models/Disruption.js";
 import TempReading from "../models/TempReading.js";
 import * as mock from "../data/mockData.js";
+import { seedFullDatabase } from "../scripts/seedDatabase.js";
 
 // Tracks whether MongoDB is actually reachable. When false, every service
 // reads directly from the in-memory mock data instead of querying Mongoose
@@ -27,26 +28,54 @@ export async function connectDB() {
 }
 
 async function seedIfEmpty() {
-  const [shipmentCount, fleetCount, disruptionCount, readingCount, userCount] = await Promise.all([
-    Shipment.countDocuments(),
-    FleetAsset.countDocuments(),
-    Disruption.countDocuments(),
-    TempReading.countDocuments(),
-    User.countDocuments(),
-  ]);
+  const shipmentCount = await Shipment.countDocuments();
 
-  if (shipmentCount === 0) await Shipment.insertMany(mock.shipments);
-  if (fleetCount === 0) await FleetAsset.insertMany(mock.fleetAssets);
-  if (disruptionCount === 0) await Disruption.insertMany(mock.disruptions);
-  if (readingCount === 0) await TempReading.insertMany(mock.coldChainReadings);
-
-  if (userCount === 0) {
-    const email = process.env.DEMO_USER_EMAIL || "[email protected]";
-    const password = process.env.DEMO_USER_PASSWORD || "supplyguard123";
-    const passwordHash = await bcrypt.hash(password, 10);
-    await User.create({ name: "Demo Operator", email, passwordHash, role: "operator" });
-    console.log(`[db] Seeded demo user: ${email} / ${password}`);
+  if (shipmentCount < 100) {
+    console.log(`[db] Detected ${shipmentCount} shipments (< 100). Auto-seeding full 100+ dynamic intermodal database...`);
+    await seedFullDatabase();
   }
+
+  const adminEmail = process.env.ADMIN_EMAIL || "admin@supplyguard.ai";
+  const adminPassword = process.env.ADMIN_PASSWORD || "SupplyGuard@2026";
+  const shipmentUserEmail = process.env.SHIPMENT_USER_EMAIL || "shipmentuser@supplyguard.ai";
+  const shipmentUserPassword = process.env.SHIPMENT_USER_PASSWORD || "Shipment@2026";
+
+  const seedUsers = [
+    {
+      name: "System Administrator",
+      email: adminEmail,
+      password: adminPassword,
+      role: "admin",
+      region: "global",
+    },
+    {
+      name: "Shipment User",
+      email: shipmentUserEmail,
+      password: shipmentUserPassword,
+      role: "shipment_user",
+      region: "US-West",
+    },
+  ];
+
+  for (const seedUser of seedUsers) {
+    const passwordHash = await bcrypt.hash(seedUser.password, 10);
+    await User.findOneAndUpdate(
+      { email: seedUser.email },
+      {
+        $set: {
+          name: seedUser.name,
+          email: seedUser.email,
+          passwordHash,
+          role: seedUser.role,
+          region: seedUser.region,
+        },
+      },
+      { upsert: true, new: true, setDefaultsOnInsert: true }
+    );
+  }
+
+  console.log(`[db] Ensured admin user: ${adminEmail} / ${adminPassword}`);
+  console.log(`[db] Ensured shipment user: ${shipmentUserEmail} / ${shipmentUserPassword}`);
 
   console.log("[db] Seed check complete.");
 }

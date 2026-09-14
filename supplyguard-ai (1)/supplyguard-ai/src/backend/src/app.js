@@ -12,6 +12,7 @@ import disruptionsRoutes from "./routes/disruptions.routes.js";
 import fleetRoutes from "./routes/fleet.routes.js";
 import coldchainRoutes from "./routes/coldchain.routes.js";
 import copilotRoutes from "./routes/copilot.routes.js";
+import simulatorRoutes from "./routes/simulator.routes.js";
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.get("/health", (req, res) => {
 
 // Public
 app.use("/api/auth", authRoutes);
+app.use("/api/simulator", simulatorRoutes);
 
 // Protected — everything past this point requires a valid JWT
 app.use("/api/dashboard", requireAuth, dashboardRoutes);

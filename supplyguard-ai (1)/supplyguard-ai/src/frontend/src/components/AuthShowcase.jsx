@@ -1,14 +1,14 @@
-import { Box, Typography, Stack } from "@mui/material";
-import ShieldOutlinedIcon from "@mui/icons-material/ShieldOutlined";
+import { Box, Typography, Stack, Button } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import RouteIcon from "@mui/icons-material/AltRoute";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
-import { tokens } from "../theme.js";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const POINTS = [
-  { icon: TrendingUpIcon, text: "Real-time disruption intelligence across every active lane" },
-  { icon: RouteIcon, text: "AI-generated rerouting recommendations in seconds" },
-  { icon: ThermostatIcon, text: "Cold-chain excursion alerts before cargo is compromised" },
+  { icon: TrendingUpIcon, text: "Real-time disruption intelligence across global trade corridors" },
+  { icon: RouteIcon, text: "AI-generated autonomous intermodal rerouting in seconds" },
+  { icon: ThermostatIcon, text: "Continuous IoT cold-chain telemetry and reefer safeguards" },
 ];
 
 export default function AuthShowcase() {
@@ -19,73 +19,147 @@ export default function AuthShowcase() {
         display: { xs: "none", md: "flex" },
         flexDirection: "column",
         justifyContent: "space-between",
-        bgcolor: tokens.navy,
-        color: "#fff",
+        bgcolor: "#F8FAFC",
+        color: "#0A192F",
         px: 7,
-        py: 7,
+        py: 6,
+        borderRight: "1px solid #E2E8F0",
         position: "relative",
         overflow: "hidden",
       }}
     >
+      {/* Subtle Blue Grid Accent */}
       <Box
         sx={{
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px)",
-          backgroundSize: "42px 42px",
-          maskImage: "radial-gradient(ellipse at top left, black 10%, transparent 70%)",
+            "linear-gradient(rgba(0, 82, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 82, 255, 0.03) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+          pointerEvents: "none",
         }}
       />
 
-      <Box sx={{ position: "relative", display: "flex", alignItems: "center", gap: 1.25 }}>
-        <Box sx={{ width: 38, height: 38, borderRadius: 2, bgcolor: tokens.indigo, display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <ShieldOutlinedIcon sx={{ fontSize: 21, color: "#fff" }} />
+      {/* Top Brand Header + Back to Homepage link */}
+      <Box sx={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <Box
+          component={RouterLink}
+          to="/"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 1.5,
+            textDecoration: "none",
+            color: "inherit",
+          }}
+        >
+          <Box
+            component="img"
+            src="/logo.png"
+            alt="SupplyGuard AI Logo"
+            sx={{
+              width: 44,
+              height: 44,
+              borderRadius: 2,
+              objectFit: "contain",
+              filter: "drop-shadow(0 4px 12px rgba(0, 82, 255, 0.25))",
+            }}
+          />
+          <Box>
+            <Typography sx={{ fontWeight: 900, fontSize: "1.15rem", letterSpacing: "-0.02em" }}>
+              SupplyGuard <Box component="span" sx={{ color: "#0052FF" }}>AI</Box>
+            </Typography>
+            <Typography sx={{ color: "#64748B", fontSize: "0.72rem", fontWeight: 600 }}>
+              Global Intermodal Freight Defense
+            </Typography>
+          </Box>
         </Box>
-        <Typography sx={{ fontWeight: 700, fontSize: "1.0625rem" }}>SupplyGuard AI</Typography>
+
+        <Button
+          component={RouterLink}
+          to="/"
+          startIcon={<ArrowBackIcon fontSize="small" />}
+          size="small"
+          sx={{
+            color: "#0052FF",
+            fontWeight: 700,
+            fontSize: "0.8rem",
+            bgcolor: "#EFF6FF",
+            px: 1.75,
+            py: 0.6,
+            borderRadius: 2,
+            border: "1px solid rgba(0, 82, 255, 0.2)",
+            "&:hover": { bgcolor: "#DBEAFE" },
+          }}
+        >
+          Homepage
+        </Button>
       </Box>
 
-      <Box sx={{ position: "relative", maxWidth: 420 }}>
-        <Typography variant="overline" sx={{ color: "#818CF8" }}>
-          Industry Problem Statement L2
+      {/* Middle Value Proposition */}
+      <Box sx={{ position: "relative", maxWidth: 440, my: "auto" }}>
+        <Typography
+          variant="overline"
+          sx={{
+            color: "#0052FF",
+            fontWeight: 800,
+            letterSpacing: "0.08em",
+            bgcolor: "#EFF6FF",
+            px: 1.5,
+            py: 0.5,
+            borderRadius: 1.5,
+            border: "1px solid rgba(0, 82, 255, 0.2)",
+            display: "inline-block",
+            mb: 2,
+          }}
+        >
+          Enterprise Freight Resilience
         </Typography>
-        <Typography variant="h3" sx={{ mt: 1.5, mb: 2, fontSize: "2rem" }}>
-          Supply Chain Disruption Assistant &amp; Fleet Optimizer
+        <Typography variant="h3" sx={{ fontWeight: 900, fontSize: "2.1rem", lineHeight: 1.2, mb: 2, color: "#0A192F" }}>
+          Autonomous Disruption Radar &amp; Fleet Protection
         </Typography>
-        <Typography variant="body1" sx={{ color: "#94A3B8", mb: 4 }}>
-          One command center to detect disruptions, quantify shipment risk, and
-          redeploy idle fleet before delays become losses.
+        <Typography variant="body1" sx={{ color: "#475569", mb: 4, lineHeight: 1.6 }}>
+          One command center to detect global bottlenecks, quantify supply chain risks, and reroute fleet assets before delays become losses.
         </Typography>
 
-        <Stack spacing={2}>
+        <Stack spacing={2.5}>
           {POINTS.map((p, i) => {
             const Icon = p.icon;
             return (
               <Box key={i} sx={{ display: "flex", alignItems: "flex-start", gap: 1.5 }}>
                 <Box
                   sx={{
-                    width: 30,
-                    height: 30,
+                    width: 34,
+                    height: 34,
                     flexShrink: 0,
-                    borderRadius: 1.5,
-                    bgcolor: "rgba(79,70,229,0.25)",
+                    borderRadius: 2,
+                    bgcolor: "#EFF6FF",
+                    border: "1px solid rgba(0, 82, 255, 0.2)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
                 >
-                  <Icon sx={{ fontSize: 16, color: "#A5B4FC" }} />
+                  <Icon sx={{ fontSize: 18, color: "#0052FF" }} />
                 </Box>
-                <Typography variant="body2" sx={{ color: "#CBD5E1", pt: 0.375 }}>{p.text}</Typography>
+                <Typography variant="body2" sx={{ color: "#334155", fontWeight: 600, pt: 0.6 }}>
+                  {p.text}
+                </Typography>
               </Box>
             );
           })}
         </Stack>
       </Box>
 
-      <Typography variant="caption" sx={{ position: "relative", color: "#475569" }}>
-        Powered by IBM Bob · Logistics &amp; Ports sector
-      </Typography>
+      {/* Footer info */}
+      <Box sx={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <Typography variant="caption" sx={{ color: "#64748B", fontWeight: 600 }}>
+          SupplyGuard AI · Global Logistics Architecture
+        </Typography>
+        <Typography variant="caption" sx={{ color: "#0052FF", fontWeight: 700 }}>
+          SOC2 &amp; GDP Certified
+        </Typography>
+      </Box>
     </Box>
   );
 }

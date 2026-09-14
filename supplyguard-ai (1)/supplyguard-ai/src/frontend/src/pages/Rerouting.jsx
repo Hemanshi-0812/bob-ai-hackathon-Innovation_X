@@ -16,6 +16,7 @@ export default function Rerouting() {
     api.getDisruptions().then((d) => {
       setDisruptions(d);
       if (d.length) setSelected(d[0].disruptionId);
+      else setSelected(null);
     }).catch((e) => setError(e.message));
   }, []);
 
@@ -31,7 +32,13 @@ export default function Rerouting() {
       {disruptions.length > 0 && (
         <DisruptionSelect disruptions={disruptions} value={selected} onChange={setSelected} />
       )}
-      {!recs && !error && (
+      {!recs && !error && disruptions.length === 0 && (
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1, py: 10 }}>
+          <AltRouteOutlinedIcon sx={{ fontSize: 32, color: "text.disabled" }} />
+          <Typography variant="body2" color="text.secondary">No disruptions are available for your region yet.</Typography>
+        </Box>
+      )}
+      {!recs && !error && disruptions.length > 0 && (
         <Box sx={{ display: "flex", justifyContent: "center", pt: 10 }}><CircularProgress /></Box>
       )}
       {recs && (
