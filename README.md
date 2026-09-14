@@ -1,7 +1,5 @@
 # 🚀  Supply Chain Disruption Assistant & Fleet Utilisation Optimizer
 
-> ⚠️ **Replace everything in `[ ]` brackets with your actual content before submission.**
-
 ---
 
 ## 👥 Team
@@ -17,8 +15,6 @@
 
 ## 🎯 Problem Statement
 
-> In 2–3 sentences: What problem does your project solve? Who experiences this problem?
-
 Security analysts receive a large number of alerts every day from different sources such as SIEM systems, cyber sensors, intelligence feeds, and security monitoring tools. Because these alerts are often fragmented, duplicated, and difficult to prioritize, analysts can spend significant time manually investigating them and may miss critical threats.
 
 Our project addresses this problem by providing a centralized intelligent assistant that correlates related alerts, identifies potentially important incidents, prioritizes them according to risk, and provides understandable insights for security analysts.
@@ -26,8 +22,6 @@ Our project addresses this problem by providing a centralized intelligent assist
 ---
 
 ## 💡 Solution
-
-> In 2–3 sentences: What did you build? How does it solve the problem above?
 
 We built an AI-powered Threat Intelligence Correlation & Alert Prioritisation Assistant that collects security alerts from multiple sources, normalizes and correlates related events, and assigns a risk-based priority to help analysts focus on the most important incidents first.
 
@@ -54,11 +48,11 @@ The system combines rule-based correlation, risk scoring, and AI-assisted analys
 
 | Category | Technologies |
 |---|---|
-| **Languages** | [e.g., Python, TypeScript] |
-| **Frameworks** | [e.g., FastAPI, React] |
-| **IBM Technologies** | [e.g., watsonx.ai, IBM Bob, IBM Cloud] |
-| **Databases** | [e.g., PostgreSQL, Redis] |
-| **Other** | [e.g., Docker, GitHub Actions] |
+| **Languages** | JavaScript, HTML, CSS |
+| **Frameworks** | React |
+| **IBM Technologies** |  Claude, IBM watsonx.ai, IBM Bob |
+| **Databases** | MongoDB |
+| **Other** | GitHub, Vite, IBM Bob |
 
 ---
 
@@ -86,18 +80,42 @@ The system combines rule-based correlation, risk scoring, and AI-assisted analys
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/[your-repo].git
+git clone https://github.com/https://github.com/Hemanshi-0812/bob-ai-hackathon-Innovation_X.git.git
 cd [your-repo]
 
 # 2. Install dependencies
-[your install command here]
+Install frontend dependencies
+cd frontend
+npm install
+
+Install backend dependencies
+Open another terminal:
+cd backend
+npm install
 
 # 3. Configure environment
-cp .env.example .env
+Create .env files based on the provided .env.example.
+Example:
+
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+AI_API_KEY=your_ai_api_key
 # Edit .env with your values
 
 # 4. Run the project
-[your run command here]
+Start the backend
+cd backend
+npm run dev
+
+Start the frontend
+In another terminal:
+cd frontend
+npm run dev
+
+# 7. Open the application
+Open the local URL displayed by Vite in your browser.
+
 ```
 
 ---
@@ -117,14 +135,19 @@ cp .env.example .env
 
 > Be honest — judges appreciate transparency over overclaiming.
 
-- [Limitation 1: e.g., "Authentication is mocked — not production-ready"]
-- [Limitation 2: e.g., "Only tested on Chrome"]
-- [Limitation 3: e.g., "Feature X is scaffolded but not fully implemented"]
-
+- The current prototype uses simulated/sample security alert data rather than direct production SIEM and sensor integrations.
+- Threat correlation and risk scoring are designed as a hackathon prototype and would require further validation with real-world security datasets.
+- AI-generated explanations and recommendations should be reviewed by a qualified security analyst before being used for real incident-response decisions.
+- Authentication and access control may be simplified for the hackathon prototype.
+- The system has been tested primarily in a development environment and may require additional testing and optimization before production deployment.
+- Real-time integrations with external security platforms are not included in the initial prototype.
+  
 ---
 
 ## 🏅 What We're Most Proud Of
 
-[Tell the judges what part of your submission is strongest and worth paying close attention to.]
+We are most proud of transforming a large and complex security-alert problem into an analyst-friendly workflow that combines alert correlation, risk-based prioritisation, and AI-assisted explanations in a single dashboard.
+
+Instead of requiring analysts to investigate every alert independently, our solution helps them quickly identify the most important incidents, understand why they matter, discover related alerts, and receive actionable recommendations — demonstrating how AI can support faster and more informed security operations.
 
 ---
