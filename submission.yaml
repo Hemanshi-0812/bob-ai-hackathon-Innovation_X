@@ -1,69 +1,40 @@
-# =============================================================================
-# HACKATHON SUBMISSION METADATA
-# =============================================================================
-# Instructions:
-#   - Fill in ALL required fields (marked with # REQUIRED)
-#   - Optional fields can be left as empty strings ""
-#   - Do NOT rename this file — the evaluation pipeline reads it by name
-#   - Use double quotes around all string values
-# =============================================================================
-
-team:
-  name: ""                             # REQUIRED — e.g., "Orion Squad"
-  track: ""                            # REQUIRED — one of: AI | DevOps | Sustainability | Open
-  lead:
-    name: ""                           # REQUIRED — e.g., "Alice Chen"
-    email: ""                          # REQUIRED — e.g., "alice.chen@ibm.com"
-  members:
-    - name: ""                         # REQUIRED — Team member 1
-      email: ""
-    - name: ""                         # Add more members by copying the two lines above
-      email: ""
-    - name: ""
-      email: ""
-
 submission:
-  title: ""                            # REQUIRED — Project display name, e.g., "SmartOps Dashboard"
-
-  problem_statement: >                 # REQUIRED — 1-3 sentences. What problem? Who has it?
-    Replace this text with a concise description of the real-world problem
-    your project addresses and who experiences it.
-
-  solution_summary: >                  # REQUIRED — 1-3 sentences. What did you build?
-    Replace this text with a clear description of your solution
-    and how it addresses the problem above.
-
-  key_features:                        # REQUIRED — List 3 to 5 specific features you implemented
-    - ""                               # e.g., "Real-time pipeline anomaly detection using watsonx.ai"
-    - ""
-    - ""
-    - ""                               # optional 4th
-    - ""                               # optional 5th
-
+  problem_id: L2
+  track: Logistics & Ports
+  title: SupplyGuard AI — Supply Chain Disruption Assistant & Fleet Utilisation Optimizer
+  status: Ongoing Pain
+  team:
+    - name: Vedi
+      role: Full-stack developer
+  problem_statement: >
+    Supply chain disruptions (weather events, port strikes, geopolitical crises)
+    cascade across hundreds of active shipments in ways that are impossible to
+    track manually. Fleet assets sit idle while other routes are overloaded.
+    Cold chain shipments are especially vulnerable to undetected temperature
+    excursions.
+  solution_summary: >
+    SupplyGuard AI is a Bob-powered assistant with ten modules: Executive
+    Dashboard, Shipment Management, Disruption Detection, Affected Shipment +
+    Risk Analysis, AI Rerouting Recommendation, Idle Fleet Detection, Fleet
+    Redeployment Recommendation, IoT Cold-Chain Monitoring, Temperature
+    Excursion + Severity Detection, and the Bob AI Copilot chat.
   tech_stack:
-    languages: []                      # REQUIRED — e.g., ["Python", "TypeScript"]
-    frameworks: []                     # e.g., ["FastAPI", "React"]
-    ibm_technologies: []               # e.g., ["watsonx.ai", "IBM Bob", "IBM Cloud Functions"]
-    databases: []                      # e.g., ["PostgreSQL", "Redis"]
-    other: []                          # e.g., ["Docker", "GitHub Actions", "Slack API"]
-
-  what_we_are_most_proud_of: >         # Optional but recommended — guides judges to your best work
-    Replace with what aspect of the submission you consider strongest
-    and want judges to pay special attention to.
-
-  known_limitations: >                 # Optional but recommended — be honest about gaps
-    Replace with any known limitations, incomplete features,
-    or shortcuts taken due to time constraints.
-
-# =============================================================================
-# ARTIFACT LOCATIONS
-# These paths are relative to the repo root. Only change if you moved files.
-# =============================================================================
-artifacts:
-  source_code: "src/"
-  setup_guide: "docs/setup-guide.md"
-  architecture_doc: "docs/architecture.md"
-  demo_video: "demo/demo-video-link.txt"   # URL to hosted video (YouTube, Loom, Box)
-  live_demo: "demo/live-demo-url.txt"      # URL to deployed demo (optional)
-  screenshots: "demo/screenshots/"
-  presentation: "presentation/"
+    frontend: [React.js, Vite]
+    ui: [MUI]
+    charts: [Recharts]
+    maps: [React Leaflet]
+    backend: [Node.js, Express.js]
+    database: [MongoDB]
+    ai: [IBM Bob Copilot, watsonx.ai]
+    ai_data_tools: [REST APIs, structured data]
+    business_logic: [JavaScript, Node.js]
+    iot: [Simulated JSON/CSV sensor data]
+    authentication: [JWT]
+    other: [Docker, Docker Compose, GitHub Actions]
+  repository_structure:
+    src: All source code (Express backend, React frontend)
+    docs: Written documentation
+    demo: Demo artifacts (screenshots, video link)
+    presentation: Slide deck
+  demo_video_link: demo/demo-video-link.txt
+  license: MIT
