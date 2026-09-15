@@ -215,7 +215,15 @@ class SimulatorService {
         else if (asset.status === "loading" && Math.random() > 0.4) newStatus = "in_transit";
         else if (asset.status === "in_transit" && Math.random() > 0.6) newStatus = "idle";
 
-        const newHours = asset.status === "idle" ? Number(((asset.lastActiveHoursAgo || 1) + 0.2).toFixed(1)) : 0.1;
+        let newHours = asset.lastActiveHoursAgo || 0;
+        if (newStatus === "idle") {
+          newHours = asset.status === "idle"
+            ? Number(((asset.lastActiveHoursAgo || 8) + 0.2).toFixed(1))
+            : Number((8 + Math.random() * 24).toFixed(1));
+        } else {
+          newHours = 0.1;
+        }
+
         await FleetAsset.updateOne(
           { _id: asset._id },
           { $set: { status: newStatus, lastActiveHoursAgo: newHours } }

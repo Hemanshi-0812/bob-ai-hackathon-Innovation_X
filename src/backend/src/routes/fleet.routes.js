@@ -16,7 +16,8 @@ router.get("/idle", async (req, res) => {
   const disruption = disruptionId ? await getDisruptionById(disruptionId) : null;
   const fleet = filterUserVisibleFleetAssets(await getFleetAssets(), req.user || { role: "admin", region: "global" });
   const idle = await findIdleAssets(disruption);
-  res.json(idle.filter((asset) => fleet.some((item) => item.assetId === asset.assetId)));
+  const visibleAssetIds = new Set(fleet.map((item) => item.assetId));
+  res.json(idle.filter((entry) => visibleAssetIds.has(entry.asset?.assetId)));
 });
 
 export default router;

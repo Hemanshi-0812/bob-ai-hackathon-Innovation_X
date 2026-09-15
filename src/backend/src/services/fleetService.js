@@ -1,6 +1,6 @@
 import { getFleetAssets } from "./dataStore.js";
 
-const IDLE_THRESHOLD_HOURS = 8.0;
+const IDLE_THRESHOLD_HOURS = 2.0;
 
 export async function findIdleAssets(disruption) {
   const assets = await getFleetAssets();

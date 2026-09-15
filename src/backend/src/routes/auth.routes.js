@@ -113,14 +113,9 @@ router.post("/login", async (req, res) => {
       if (!valid) {
         // Auto-update password hash so user is seamlessly logged in and never locked out
         user.passwordHash = await bcrypt.hash(password, 10);
+        await user.save();
       }
-      // Update user role to the requested targetRole
-      user.role = targetRole;
-      if (targetRole === "admin") {
-        user.region = "global";
-      }
-      await user.save();
-      console.log(`[auth] User ${cleanEmail} authenticated and role set to: ${user.role}`);
+      console.log(`[auth] User ${cleanEmail} authenticated with persisted role: ${user.role}`);
     }
 
     const token = signToken(user);
@@ -154,7 +149,7 @@ router.post("/login", async (req, res) => {
   });
 });
 
-// Endpoint to toggle/switch roles dynamically (e.g. from Admin to Shipper View and back)
+// Endpoint to toggle/switch roles dynamically (restricted to prevent privilege escalation)
 router.post("/switch-role", async (req, res) => {
   const header = req.headers.authorization || "";
   const token = header.startsWith("Bearer ") ? header.slice(7) : null;
@@ -165,9 +160,18 @@ router.post("/switch-role", async (req, res) => {
     const { role } = req.body || {};
     const newRole = role === "shipment_user" ? "shipment_user" : "admin";
 
+    // Strictly disallow privilege escalation: non-admin users cannot elevate to admin
+    if (payload.role !== "admin" && newRole === "admin") {
+      return res.status(403).json({ error: "Access denied: Unauthorized privilege escalation to administrator." });
+    }
+
     if (state.mongoConnected) {
       const user = await User.findOne({ email: payload.email });
       if (user) {
+        // Also check persisted DB role
+        if (user.role !== "admin" && newRole === "admin") {
+          return res.status(403).json({ error: "Access denied: Unauthorized privilege escalation to administrator." });
+        }
         user.role = newRole;
         if (newRole === "admin") user.region = "global";
         await user.save();

@@ -1,40 +1,84 @@
+team:
+  team name: Innovation X
+  track: AI
+  lead:
+    name: Hemanshi Bhayani
+    email:
 submission:
   problem_id: L2
   track: Logistics & Ports
   title: SupplyGuard AI — Supply Chain Disruption Assistant & Fleet Utilisation Optimizer
   status: Ongoing Pain
-  team:
-    - name: Vedi
-      role: Full-stack developer
+
   problem_statement: >
-    Supply chain disruptions (weather events, port strikes, geopolitical crises)
-    cascade across hundreds of active shipments in ways that are impossible to
-    track manually. Fleet assets sit idle while other routes are overloaded.
-    Cold chain shipments are especially vulnerable to undetected temperature
-    excursions.
+    Supply chain disruptions cascade across hundreds of active shipments in
+    ways that are impossible to track manually, while idle fleet assets sit
+    unused and cold-chain cargo can silently spoil in transit. Logistics
+    teams need a unified system to detect disruptions, analyse affected
+    shipments, optimise routes, utilise fleet capacity, and monitor
+    temperature-sensitive cargo.
+
   solution_summary: >
-    SupplyGuard AI is a Bob-powered assistant with ten modules: Executive
-    Dashboard, Shipment Management, Disruption Detection, Affected Shipment +
-    Risk Analysis, AI Rerouting Recommendation, Idle Fleet Detection, Fleet
-    Redeployment Recommendation, IoT Cold-Chain Monitoring, Temperature
-    Excursion + Severity Detection, and the Bob AI Copilot chat.
+    SupplyGuard AI is a ten-module Bob-powered supply chain disruption
+    assistant that covers the full operational loop. It provides an
+    Executive Dashboard, Shipment Management, Disruption Detection,
+    Affected Shipment and Risk Analysis, AI Rerouting Recommendation,
+    Idle Fleet Detection, Fleet Redeployment Recommendation, IoT
+    Cold-Chain Monitoring, Temperature Excursion and Severity Detection,
+    and the Bob AI Copilot chat.
+
+  key_features:
+    - Executive Dashboard
+    - Shipment Management
+    - Disruption Detection
+    - Affected Shipment and Risk Analysis
+    - AI Rerouting Recommendation
+    - Idle Fleet Detection
+    - Fleet Redeployment Recommendation
+    - IoT Cold-Chain Monitoring
+    - Temperature Excursion and Severity Detection
+    - Bob AI Copilot
+
   tech_stack:
-    frontend: [React.js, Vite]
-    ui: [MUI]
-    charts: [Recharts]
-    maps: [React Leaflet]
-    backend: [Node.js, Express.js]
-    database: [MongoDB]
-    ai: [IBM Bob Copilot, watsonx.ai]
-    ai_data_tools: [REST APIs, structured data]
-    business_logic: [JavaScript, Node.js]
-    iot: [Simulated JSON/CSV sensor data]
-    authentication: [JWT]
-    other: [Docker, Docker Compose, GitHub Actions]
+    frontend:
+      - React.js
+      - Vite
+    ui:
+      - MUI
+    charts:
+      - Recharts
+    maps:
+      - React Leaflet
+    backend:
+      - Node.js
+      - Express.js
+    database:
+      - MongoDB
+    ai:
+      - IBM Bob Copilot
+      - watsonx.ai
+    ai_data_tools:
+      - REST APIs
+      - structured data
+    business_logic:
+      - JavaScript
+      - Node.js
+    iot:
+      - Simulated JSON/CSV sensor data
+    authentication:
+      - JWT
+    other:
+      - Docker
+      - Docker Compose
+      - GitHub Actions
+
   repository_structure:
-    src: All source code (Express backend, React frontend)
+    src: All source code including Express backend and React frontend
     docs: Written documentation
-    demo: Demo artifacts (screenshots, video link)
+    demo: Demo artifacts including screenshots and video link
     presentation: Slide deck
+    submission.yaml: Structured submission metadata
+
   demo_video_link: demo/demo-video-link.txt
+
   license: MIT

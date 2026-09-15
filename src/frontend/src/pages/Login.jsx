@@ -165,7 +165,7 @@ export default function Login() {
               <TextField
                 label={role === "admin" ? "Administrator Email Address" : "Shipper Email Address"}
                 type="email"
-                placeholder={role === "admin" ? "admin@supplyguard.ai" : "shipmentuser@supplyguard.ai"}
+                placeholder="name@company.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 fullWidth
@@ -204,7 +204,7 @@ export default function Login() {
                 fullWidth
                 size="large"
                 sx={{
-                  py: 1.4,
+                  py: 1.3,
                   bgcolor: "#0052FF",
                   fontWeight: 800,
                   fontSize: "0.95rem",
@@ -219,24 +219,6 @@ export default function Login() {
                   ? "Sign In as System Administrator"
                   : "Sign In to Shipper Workspace"}
               </Button>
-
-              {/* Helpful Demo Credentials Hint */}
-              <Box
-                sx={{
-                  p: 1.5,
-                  borderRadius: 2,
-                  bgcolor: "#F8FAFC",
-                  border: "1px solid #E2E8F0",
-                  textAlign: "center",
-                }}
-              >
-                <Typography variant="caption" sx={{ color: "#64748B", display: "block" }}>
-                  Demo Accounts: <strong>shipmentuser@supplyguard.ai</strong> or <strong>admin@supplyguard.ai</strong>
-                </Typography>
-                <Typography variant="caption" sx={{ color: "#64748B", display: "block" }}>
-                  Passwords: <strong>Shipment@2026</strong> or <strong>SupplyGuard@2026</strong>
-                </Typography>
-              </Box>
 
               <Typography variant="body2" align="center" sx={{ color: "#475569" }}>
                 Don't have an account?{" "}

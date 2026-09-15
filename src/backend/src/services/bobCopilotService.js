@@ -376,14 +376,14 @@ export async function chatWithBob(message, user = null) {
     }
 
     const preview = idle.slice(0, 4).map(
-      (a) => `• **${a.assetId || a.id || "Asset"}**: ${a.type || "Truck"} stationed at **${a.currentLocation || a.region || "Hub"}** (${a.status || "Idle"})`
+      (a) => `• **${a.asset?.assetId || a.assetId || "Asset"}**: ${a.asset?.type || a.type || "Truck"} stationed at **${a.asset?.currentRegion || a.currentRegion || "Hub"}** (${a.asset?.status || a.status || "Idle"})`
     ).join("\n");
 
     return {
       reply: `🚚 **Fleet Readiness (${idle.length} idle asset(s) available)**\n\n` +
         `${preview}\n\n` +
         `These idle units can be dispatched immediately to relieve delayed freight or bypass active regional disruptions.`,
-      groundedIn: idle[0].assetId || null,
+      groundedIn: idle[0].asset?.assetId || idle[0].assetId || null,
     };
   }
 

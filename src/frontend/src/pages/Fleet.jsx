@@ -33,55 +33,89 @@ export default function Fleet() {
         <Box sx={{ display: "flex", justifyContent: "center", pt: 10 }}><CircularProgress /></Box>
       )}
       {idle && (
-        <Card sx={{ overflow: "hidden" }}>
-          <Box sx={{ overflowX: "auto" }}>
-            <Table size="small">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Asset</TableCell>
-                  <TableCell>Type</TableCell>
-                  <TableCell>Current Region</TableCell>
-                  <TableCell>Idle</TableCell>
-                  <TableCell>Redeployment Suggestion</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {idle.map((i) => (
-                  <TableRow key={i.asset.assetId} hover>
-                    <TableCell>
-                      <Typography variant="body2" sx={{ fontWeight: 600, fontFamily: '"JetBrains Mono", monospace', fontSize: "0.8125rem" }}>
-                        {i.asset.assetId}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Chip size="small" variant="outlined" label={i.asset.type} sx={{ textTransform: "capitalize", borderColor: tokens.border, fontWeight: 600 }} />
-                    </TableCell>
-                    <TableCell>{i.asset.currentRegion}</TableCell>
-                    <TableCell>
-                      <Chip
-                        size="small"
-                        label={`${i.idleHours.toFixed(1)}h`}
-                        sx={{
-                          bgcolor: i.idleHours > 24 ? tokens.redSoft : tokens.amberSoft,
-                          color: i.idleHours > 24 ? "#991B1B" : "#92400E",
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell sx={{ maxWidth: 420 }}>
-                      <Typography variant="body2">{i.redeploymentSuggestion}</Typography>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+        <>
+          <Box sx={{ mb: 2, display: "flex", alignItems: "center", gap: 1.5, flexWrap: "wrap" }}>
+            <Chip
+              icon={<LocalShippingOutlinedIcon />}
+              label={`${idle.length} Idle Asset(s) Detected`}
+              color="primary"
+              sx={{ fontWeight: 700 }}
+            />
+            {selected && (
+              <Chip
+                label={`Target Corridor: ${disruptions.find((d) => d.disruptionId === selected)?.region || selected}`}
+                variant="outlined"
+                sx={{ fontWeight: 700, borderColor: tokens.indigo, color: tokens.indigo }}
+              />
+            )}
+            <Chip
+              label="Threshold: > 2.0h Inactive"
+              size="small"
+              variant="outlined"
+              sx={{ color: "text.secondary", fontSize: "0.75rem" }}
+            />
           </Box>
-          {idle.length === 0 && (
-            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", py: 6, gap: 1 }}>
-              <LocalShippingOutlinedIcon sx={{ fontSize: 32, color: "text.disabled" }} />
-              <Typography variant="body2" color="text.secondary">No idle assets above the threshold right now.</Typography>
+
+          <Card sx={{ overflow: "hidden", border: `1px solid ${tokens.border}`, boxShadow: "0 4px 20px rgba(0,0,0,0.04)" }}>
+            <Box sx={{ overflowX: "auto" }}>
+              <Table size="small">
+                <TableHead>
+                  <TableRow sx={{ bgcolor: "rgba(248, 250, 252, 0.8)" }}>
+                    <TableCell sx={{ fontWeight: 700 }}>Asset ID</TableCell>
+                    <TableCell sx={{ fontWeight: 700 }}>Type</TableCell>
+                    <TableCell sx={{ fontWeight: 700 }}>Current Region</TableCell>
+                    <TableCell sx={{ fontWeight: 700 }}>Capacity</TableCell>
+                    <TableCell sx={{ fontWeight: 700 }}>Idle Duration</TableCell>
+                    <TableCell sx={{ fontWeight: 700 }}>AI Redeployment Suggestion</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {idle.map((i) => (
+                    <TableRow key={i.asset.assetId} hover>
+                      <TableCell>
+                        <Typography variant="body2" sx={{ fontWeight: 700, fontFamily: '"JetBrains Mono", monospace', fontSize: "0.8125rem", color: tokens.indigo }}>
+                          {i.asset.assetId}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Chip size="small" variant="outlined" label={i.asset.type} sx={{ textTransform: "capitalize", borderColor: tokens.border, fontWeight: 700 }} />
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="body2" sx={{ fontWeight: 600 }}>{i.asset.currentRegion}</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="body2" color="text.secondary">
+                          {Number(i.asset.capacityUnits || 0).toLocaleString()} units
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Chip
+                          size="small"
+                          label={`${i.idleHours.toFixed(1)}h idle`}
+                          sx={{
+                            fontWeight: 700,
+                            bgcolor: i.idleHours > 24 ? tokens.redSoft : tokens.amberSoft,
+                            color: i.idleHours > 24 ? "#991B1B" : "#92400E",
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell sx={{ maxWidth: 460 }}>
+                        <Typography variant="body2" sx={{ lineHeight: 1.5 }}>{i.redeploymentSuggestion}</Typography>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </Box>
-          )}
-        </Card>
+            {idle.length === 0 && (
+              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", py: 8, gap: 1.5 }}>
+                <LocalShippingOutlinedIcon sx={{ fontSize: 36, color: "text.disabled" }} />
+                <Typography variant="body1" sx={{ fontWeight: 700 }}>No idle assets above the threshold right now.</Typography>
+                <Typography variant="body2" color="text.secondary">All network fleet capacity is actively deployed on scheduled corridors.</Typography>
+              </Box>
+            )}
+          </Card>
+        </>
       )}
     </AppLayout>
   );

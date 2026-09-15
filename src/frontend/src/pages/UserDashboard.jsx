@@ -94,7 +94,7 @@ function StatCard({ label, value, sub, icon: Icon, accent, bgAccent }) {
 }
 
 export default function UserDashboard() {
-  const { user, switchRole } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [data, setData] = useState(null);
   const [shipments, setShipments] = useState([]);
@@ -232,24 +232,6 @@ export default function UserDashboard() {
           </Box>
 
           <Stack direction="row" spacing={1.5} flexWrap="wrap" sx={{ gap: 1 }}>
-            <Button
-              variant="contained"
-              onClick={async () => {
-                await switchRole("admin");
-                navigate("/dashboard");
-              }}
-              startIcon={<ShieldOutlinedIcon />}
-              sx={{
-                bgcolor: "#0052FF",
-                color: "#fff",
-                fontWeight: 800,
-                fontSize: "0.82rem",
-                boxShadow: "0 4px 14px rgba(0, 82, 255, 0.4)",
-                "&:hover": { bgcolor: "#0043D1" },
-              }}
-            >
-              Switch to Admin Deck
-            </Button>
             <Button
               variant="outlined"
               onClick={() => navigate("/copilot")}

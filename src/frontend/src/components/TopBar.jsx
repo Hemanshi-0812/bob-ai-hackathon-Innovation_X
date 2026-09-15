@@ -7,14 +7,11 @@ import {
   IconButton,
   Tooltip,
   Divider,
-  Chip,
 } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/LogoutOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import ShieldOutlinedIcon from "@mui/icons-material/ShieldOutlined";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useColorTheme } from "../context/ThemeContext.jsx";
 import { DRAWER_WIDTH } from "./Sidebar.jsx";
@@ -28,7 +25,7 @@ function initials(name = "") {
 }
 
 export default function TopBar({ title, subtitle }) {
-  const { user, logout, switchRole } = useAuth();
+  const { user, logout } = useAuth();
   const { toggleTheme, isDark } = useColorTheme();
   const navigate = useNavigate();
 
@@ -61,45 +58,6 @@ export default function TopBar({ title, subtitle }) {
         <Box sx={{ display: "flex", alignItems: "center", gap: 1.25, flexShrink: 0 }}>
           {user && (
             <>
-              {/* Instant Role Switcher Toggle */}
-              <Tooltip title={user.role === "admin" ? "Currently in Admin Mode. Click to switch to Shipper View" : "Currently in Shipper View. Click to switch to Admin Command Deck"}>
-                <Chip
-                  icon={
-                    user.role === "admin" ? (
-                      <ShieldOutlinedIcon sx={{ fontSize: "14px !important", color: (isDark ? "#38BDF8" : "#0052FF") + " !important" }} />
-                    ) : (
-                      <PersonOutlineIcon sx={{ fontSize: "14px !important", color: (isDark ? "#34D399" : "#059669") + " !important" }} />
-                    )
-                  }
-                  label={
-                    user.role === "admin"
-                      ? "🛡️ Admin Deck (Switch to Shipper)"
-                      : "📦 Shipper View (Switch to Admin)"
-                  }
-                  onClick={async () => {
-                    const target = user.role === "admin" ? "shipment_user" : "admin";
-                    await switchRole(target);
-                    navigate("/dashboard");
-                  }}
-                  size="small"
-                  sx={{
-                    cursor: "pointer",
-                    fontWeight: 800,
-                    fontSize: "0.72rem",
-                    py: 1.75,
-                    px: 0.5,
-                    borderRadius: 2,
-                    bgcolor: user.role === "admin" ? (isDark ? "rgba(56, 189, 248, 0.15)" : "#EFF6FF") : (isDark ? "rgba(16, 185, 129, 0.15)" : "#ECFDF5"),
-                    color: user.role === "admin" ? (isDark ? "#38BDF8" : "#0052FF") : (isDark ? "#34D399" : "#059669"),
-                    border: `1px solid ${user.role === "admin" ? (isDark ? "rgba(56, 189, 248, 0.3)" : "#DBEAFE") : (isDark ? "rgba(16, 185, 129, 0.3)" : "#A7F3D0")}`,
-                    transition: "all 150ms ease",
-                    "&:hover": {
-                      transform: "scale(1.02)",
-                      boxShadow: "0 2px 8px rgba(0, 82, 255, 0.2)",
-                    },
-                  }}
-                />
-              </Tooltip>
 
               <Box
                 onClick={() => navigate("/profile")}

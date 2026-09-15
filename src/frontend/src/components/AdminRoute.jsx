@@ -7,7 +7,7 @@ import { tokens } from "../theme.js";
 import { useNavigate } from "react-router-dom";
 
 export default function AdminRoute({ children }) {
-  const { user, switchRole } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   if (!user) {
@@ -53,17 +53,8 @@ export default function AdminRoute({ children }) {
           <Box sx={{ display: "flex", gap: 2, justifyContent: "center", flexWrap: "wrap" }}>
             <Button
               variant="contained"
-              onClick={async () => {
-                await switchRole("admin");
-              }}
-              sx={{ background: tokens.gradientPrimary, px: 3, fontWeight: 800 }}
-            >
-              Switch to System Administrator & Access
-            </Button>
-            <Button
-              variant="outlined"
               onClick={() => navigate("/dashboard")}
-              sx={{ px: 3 }}
+              sx={{ background: tokens.gradientPrimary, px: 3, fontWeight: 800 }}
             >
               Return to My Workspace
             </Button>
