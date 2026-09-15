@@ -32,11 +32,16 @@ The system combines rule-based correlation, risk scoring, and AI-assisted analys
 
 ## ✨ Key Features
 
-- **Feature 1:** [Brief description — e.g., "Real-time anomaly detection using watsonx.ai"]
-- **Feature 2:** [Brief description]
-- **Feature 3:** [Brief description]
-- **Feature 4:** [Optional]
-- **Feature 5:** [Optional]
+- **📊 Executive Dashboard:** Provides a centralized real-time overview of shipments, active disruptions, high-risk shipments, fleet utilization, idle vehicles, and cold-chain conditions.
+- **📦 Shipment Management:** Enables users to view, track, and manage shipment details including origin, destination, status, ETA, priority, cargo type, and assigned vehicle.
+- **🚨 Disruption Detection:** Detects potential supply-chain disruptions such as severe weather, road closures, port delays, accidents, and other events that may affect transportation routes.
+- **🎯 Affected Shipment & Risk Analysis:** Identifies shipments affected by a disruption and calculates their risk based on factors such as disruption severity, shipment priority, delay, route impact, and cargo sensitivity.
+- **🛣️ AI Rerouting Recommendation:**Analyzes affected routes and recommends alternative routes to reduce delays, disruption impact, and transportation risk.
+- **🚚 Idle Fleet Detection:** Identifies vehicles that are idle, underutilized, or available for redeployment based on their current location, status, and assigned workload.
+- **🔄 Fleet Redeployment Recommendation:** Recommends suitable available vehicles for affected or high-priority shipments by considering factors such as vehicle location, capacity, availability, and shipment requirements.
+- **❄️ IoT Cold-Chain Monitoring:** Monitors IoT sensor data such as temperature and other environmental conditions for temperature-sensitive shipments.
+- **🌡️ Temperature Excursion & Severity Detection:** Detects temperature values outside the acceptable range and classifies the excursion based on severity and potential impact on the cargo.
+- **🤖 IBM Bob AI Copilot:** Provides an interactive AI assistant that allows users to ask questions about shipments, disruptions, fleet utilization, risks, and recommended actions using natural language.
 
 ---
 
@@ -57,17 +62,114 @@ The system combines rule-based correlation, risk scoring, and AI-assisted analys
 ## 📁 Repository Structure
 
 ```
-├── src/                  # All source code
-├── docs/                 # Written documentation
-│   ├── problem-statement.md
-│   ├── solution-overview.md
+supplyguard-ai/
+├── docker-compose.yml
+├── submission.yaml
+├── README.md
+├── CONTRIBUTING.md
+│
+├── docs/
 │   ├── architecture.md
-│   └── setup-guide.md
-├── demo/                 # Demo artifacts
-│   ├── screenshots/      # App screenshots
-│   └── demo-video-link.txt  # Link to demo video
-├── presentation/         # Slide deck
-└── submission.yaml       # Structured submission metadata
+│   ├── problem-statement.md
+│   ├── setup-guide.md
+│   ├── solution-overview.md
+│   └── template-guide.md
+│
+├── demo/
+│   ├── live-demo-url.txt
+│   ├── demo-video-link.txt
+│   └── screenshots/
+│
+├── presentation/
+│   └── slides.pptx
+│
+└── src/
+    ├── backend/
+    │   ├── src/
+    │   │   ├── config/
+    │   │   │   └── db.js
+    │   │   ├── data/
+    │   │   │   └── mockData.js
+    │   │   ├── middleware/
+    │   │   │   └── auth.js
+    │   │   ├── models/
+    │   │   │   ├── Disruption.js
+    │   │   │   ├── FleetAsset.js
+    │   │   │   ├── Shipment.js
+    │   │   │   ├── TempReading.js
+    │   │   │   └── User.js
+    │   │   ├── routes/
+    │   │   │   ├── auth.routes.js
+    │   │   │   ├── coldchain.routes.js
+    │   │   │   ├── copilot.routes.js
+    │   │   │   ├── dashboard.routes.js
+    │   │   │   ├── disruptions.routes.js
+    │   │   │   ├── fleet.routes.js
+    │   │   │   ├── shipments.routes.js
+    │   │   │   └── simulator.routes.js
+    │   │   ├── scripts/
+    │   │   │   └── seedDatabase.js
+    │   │   ├── services/
+    │   │   │   ├── bobCopilotService.js
+    │   │   │   ├── coldchainService.js
+    │   │   │   ├── dataStore.js
+    │   │   │   ├── disruptionService.js
+    │   │   │   ├── fleetService.js
+    │   │   │   ├── routingService.js
+    │   │   │   └── simulatorService.js
+    │   │   ├── utils/
+    │   │   │   └── access.js
+    │   │   └── app.js
+    │   ├── test/
+    │   │   └── access.test.js
+    │   ├── Dockerfile
+    │   ├── package.json
+    │   └── server.js
+    │
+    └── frontend/
+        ├── public/
+        │   └── logo.png
+        ├── src/
+        │   ├── api/
+        │   │   └── client.js
+        │   ├── assets/
+        │   │   └── logo.png
+        │   ├── components/
+        │   │   ├── AddShipmentModal.jsx
+        │   │   ├── AdminRoute.jsx
+        │   │   ├── AppLayout.jsx
+        │   │   ├── AuthShowcase.jsx
+        │   │   ├── DisruptionSelect.jsx
+        │   │   ├── ProtectedRoute.jsx
+        │   │   ├── SeverityChip.jsx
+        │   │   ├── ShipmentDetailsModal.jsx
+        │   │   ├── Sidebar.jsx
+        │   │   └── TopBar.jsx
+        │   ├── context/
+        │   │   ├── AuthContext.jsx
+        │   │   └── ThemeContext.jsx
+        │   ├── pages/
+        │   │   ├── ColdChain.jsx
+        │   │   ├── Copilot.jsx
+        │   │   ├── Dashboard.jsx
+        │   │   ├── Disruptions.jsx
+        │   │   ├── Fleet.jsx
+        │   │   ├── Home.jsx
+        │   │   ├── Login.jsx
+        │   │   ├── Register.jsx
+        │   │   ├── Rerouting.jsx
+        │   │   ├── RiskAnalysis.jsx
+        │   │   ├── Shipments.jsx
+        │   │   ├── UserDashboard.jsx
+        │   │   └── UserProfile.jsx
+        │   ├── App.jsx
+        │   ├── main.jsx
+        │   └── theme.js
+        ├── Dockerfile
+        ├── index.html
+        ├── nginx.conf
+        ├── package.json
+        └── vite.config.js
 ```
 
 ---
@@ -78,18 +180,39 @@ The system combines rule-based correlation, risk scoring, and AI-assisted analys
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/[your-repo].git
-cd [your-repo]
+git clone https://github.com/Hemanshi-0812/bob-ai-hackathon-Innovation_X.git
+cd https://github.com/Hemanshi-0812/bob-ai-hackathon-Innovation_X
 
 # 2. Install dependencies
-[your install command here]
+Install frontend dependencies
+cd frontend
+npm install
+
+Install backend dependencies
+Open another terminal:
+cd backend
+npm install
 
 # 3. Configure environment
-cp .env.example .env
+Create .env files based on the provided .env.example.
+
+Example:
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+AI_API_KEY=your_ai_api_key
 # Edit .env with your values
 
 # 4. Run the project
-[your run command here]
+cd backend
+npm run dev
+Start the frontend
+
+In another terminal:
+cd frontend
+npm run dev
+Open the local URL displayed by Vite in your browser.
+
 ```
 
 ---
@@ -109,14 +232,18 @@ cp .env.example .env
 
 > Be honest — judges appreciate transparency over overclaiming.
 
-- [Limitation 1: e.g., "Authentication is mocked — not production-ready"]
-- [Limitation 2: e.g., "Only tested on Chrome"]
-- [Limitation 3: e.g., "Feature X is scaffolded but not fully implemented"]
-
+- The current prototype uses simulated/sample security alert data rather than direct  production SIEM and sensor integrations.
+-Threat correlation and risk scoring are designed as a hackathon prototype and would require further validation with real-world security datasets.
+-AI-generated explanations and recommendations should be reviewed by a qualified security analyst before being used for real incident-response decisions.
+-Authentication and access control may be simplified for the hackathon prototype.
+-The system has been tested primarily in a development environment and may require additional testing and optimization before production deployment.
+-Real-time integrations with external security platforms are not included in the initial prototype.
 ---
 
 ## 🏅 What We're Most Proud Of
 
-[Tell the judges what part of your submission is strongest and worth paying close attention to.]
+We are most proud of transforming a large and complex security-alert problem into an analyst-friendly workflow that combines alert correlation, risk-based prioritisation, and AI-assisted explanations in a single dashboard.
+
+Instead of requiring analysts to investigate every alert independently, our solution helps them quickly identify the most important incidents, understand why they matter, discover related alerts, and receive actionable recommendations — demonstrating how AI can support faster and more informed security operations.
 
 ---
