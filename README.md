@@ -1,33 +1,32 @@
-# 🚀 [Your Project Title Here]
+# 🚀 Threat Intelligence Correlation & Alert Prioritisation Assistant
 
-> ⚠️ **Replace everything in `[ ]` brackets with your actual content before submission.**
-
+> An AI-powered security operations assistant that helps analysts correlate security alerts, identify high-risk incidents, prioritize threats, and understand recommended actions from a unified dashboard.
 ---
 
 ## 👥 Team
 
 | Field | Value |
 |---|---|
-| **Team Name** | [Your Team Name] |
-| **Track** | [AI / DevOps / Sustainability / Open] |
-| **Team Lead** | [Name] — [email@ibm.com] |
-| **Members** | [Name 1], [Name 2], [Name 3] |
+| **Team Name** | Innovation X |
+| **Track** | AI |
+| **Team Lead** | Hemanshi Bhayani — [email@ibm.com] |
+| **Members** | Vedi Dhameliya, Heta Rajani, Tushya Patel |
 
 ---
 
 ## 🎯 Problem Statement
 
-> In 2–3 sentences: What problem does your project solve? Who experiences this problem?
+Security analysts receive a large number of alerts every day from different sources such as SIEM systems, cyber sensors, intelligence feeds, and security monitoring tools. Because these alerts are often fragmented, duplicated, and difficult to prioritize, analysts can spend significant time manually investigating them and may miss critical threats.
 
-[Describe the real-world problem your project addresses. Be specific about who the user is and what pain point they face.]
+Our project addresses this problem by providing a centralized intelligent assistant that correlates related alerts, identifies potentially important incidents, prioritizes them according to risk, and provides understandable insights for security analysts.
 
 ---
 
 ## 💡 Solution
 
-> In 2–3 sentences: What did you build? How does it solve the problem above?
+We built an AI-powered Threat Intelligence Correlation & Alert Prioritisation Assistant that collects security alerts from multiple sources, normalizes and correlates related events, and assigns a risk-based priority to help analysts focus on the most important incidents first.
 
-[Describe your solution clearly. Explain the core mechanism — what makes it work.]
+The system combines rule-based correlation, risk scoring, and AI-assisted analysis to provide alert explanations, incident summaries, and recommended next actions through an interactive security dashboard.
 
 ---
 
@@ -45,11 +44,13 @@
 
 | Category | Technologies |
 |---|---|
-| **Languages** | [e.g., Python, TypeScript] |
-| **Frameworks** | [e.g., FastAPI, React] |
-| **IBM Technologies** | [e.g., watsonx.ai, IBM Bob, IBM Cloud] |
-| **Databases** | [e.g., PostgreSQL, Redis] |
-| **Other** | [e.g., Docker, GitHub Actions] |
+| **Languages** | JavaScript, HTML, CSS |
+| **Frontend** | React |
+| **Backend** | Node.js, Express.js |
+| **IBM Technologies** | IBM Bob |
+| **IBM Technologies** | Claude, Antigravity |
+| **Databases** | MongoDB |
+| **Other** | Docker, GitHub, Vite |
 
 ---
 
