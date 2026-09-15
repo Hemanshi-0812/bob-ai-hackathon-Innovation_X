@@ -179,39 +179,16 @@ supplyguard-ai/
 > **Copy these exact steps from your [`docs/setup-guide.md`](docs/setup-guide.md)**
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/Hemanshi-0812/bob-ai-hackathon-Innovation_X.git
-cd https://github.com/Hemanshi-0812/bob-ai-hackathon-Innovation_X
+# Docker Compose (recommended)
+git clone <this-repo>
+cd supplyguard-ai
+docker compose up --build
 
-# 2. Install dependencies
-Install frontend dependencies
-cd frontend
-npm install
+-Backend API: http://localhost:5000 (health check at /health)
+-Frontend dashboard: http://localhost:5173
+-Demo login: [email protected] / supplyguard123 (seeded automatically on first run — see .env.example), or click Create one on the login screen to register your own account.
 
-Install backend dependencies
-Open another terminal:
-cd backend
-npm install
-
-# 3. Configure environment
-Create .env files based on the provided .env.example.
-
-Example:
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-AI_API_KEY=your_ai_api_key
-# Edit .env with your values
-
-# 4. Run the project
-cd backend
-npm run dev
-Start the frontend
-
-In another terminal:
-cd frontend
-npm run dev
-Open the local URL displayed by Vite in your browser.
+-If you customize DEMO_USER_EMAIL/DEMO_USER_PASSWORD (via a root-level .env — see .env.example), do this on a fresh database, since the demo user is only seeded once. If you already have a running Mongo volume from an earlier attempt with different credentials, either register a new account instead, or reset the volume with docker compose down -v before starting again.
 
 ```
 
