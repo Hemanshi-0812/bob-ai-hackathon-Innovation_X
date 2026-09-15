@@ -207,8 +207,6 @@ docker compose up --build
 
 ## ⚠️ Known Limitations
 
-> Be honest — judges appreciate transparency over overclaiming.
-
 - The current prototype uses simulated/sample security alert data rather than direct  production SIEM and sensor integrations.
 -Threat correlation and risk scoring are designed as a hackathon prototype and would require further validation with real-world security datasets.
 -AI-generated explanations and recommendations should be reviewed by a qualified security analyst before being used for real incident-response decisions.
