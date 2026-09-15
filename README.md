@@ -210,12 +210,12 @@ docker compose up --build
 
 ## ⚠️ Known Limitations
 
--The prototype uses simulated/sample operational data rather than live enterprise supply-chain feeds.
--Route recommendations are based on available route and disruption information and would require integration with real-time mapping and traffic services for production deployment.
--Fleet redeployment recommendations depend on the accuracy and availability of fleet location, capacity, and status data.
--IoT cold-chain monitoring currently depends on available/simulated sensor readings rather than direct physical IoT devices.
--Risk scoring and temperature severity classification are designed for prototype decision support and would require validation against real operational and regulatory datasets before production use.
--Authentication, security, scalability, and enterprise integrations would require additional hardening for production deployment.
+- **The prototype uses simulated/sample operational data rather than live enterprise supply-chain feeds.
+- **Route recommendations are based on available route and disruption information and would require integration with real-time mapping and traffic services for production deployment.
+- **Fleet redeployment recommendations depend on the accuracy and availability of fleet location, capacity, and status data.
+- **IoT cold-chain monitoring currently depends on available/simulated sensor readings rather than direct physical IoT devices.
+- **Risk scoring and temperature severity classification are designed for prototype decision support and would require validation against real operational and regulatory datasets before production use.
+- **Authentication, security, scalability, and enterprise integrations would require additional hardening for production deployment.
 
 ---
 
