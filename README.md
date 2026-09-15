@@ -1,6 +1,6 @@
-# 🚀 Threat Intelligence Correlation & Alert Prioritisation Assistant
+# 🚀 Supply Chain Disruption Assistant & Fleet Utilisation Optimizer
 
-> An AI-powered security operations assistant that helps analysts correlate security alerts, identify high-risk incidents, prioritize threats, and understand recommended actions from a unified dashboard.
+> An AI-powered decision-support platform for detecting supply-chain disruptions, analysing shipment risk, recommending alternative routes, optimising fleet utilisation, and monitoring cold-chain conditions.
 ---
 
 ## 👥 Team
@@ -16,19 +16,21 @@
 
 ## 🎯 Problem Statement
 
-Security analysts receive a large number of alerts every day from different sources such as SIEM systems, cyber sensors, intelligence feeds, and security monitoring tools. Because these alerts are often fragmented, duplicated, and difficult to prioritize, analysts can spend significant time manually investigating them and may miss critical threats.
+Supply-chain disruptions such as severe weather, road closures, port delays, accidents, and other transportation events can affect multiple active shipments at the same time, making manual tracking and decision-making difficult. Fleet assets may remain idle while other routes are overloaded, while cold-chain shipments are vulnerable to temperature excursions that can damage temperature-sensitive cargo.
 
-Our project addresses this problem by providing a centralized intelligent assistant that correlates related alerts, identifies potentially important incidents, prioritizes them according to risk, and provides understandable insights for security analysts.
+Supply-chain managers, logistics operators, fleet managers, and shipment coordinators need a faster way to identify affected shipments, assess risk, find alternative routes, redeploy available fleet assets, and detect cold-chain temperature issues before delivery.
 
 ---
 
 ## 💡 Solution
 
-We built an AI-powered Threat Intelligence Correlation & Alert Prioritisation Assistant that collects security alerts from multiple sources, normalizes and correlates related events, and assigns a risk-based priority to help analysts focus on the most important incidents first.
+We built an AI-powered supply-chain decision-support platform that brings shipment, disruption, fleet, route, and IoT cold-chain information into one system. The platform detects affected shipments, calculates risk, recommends alternative routes and fleet redeployment, monitors temperature excursions, and provides an AI Copilot for natural-language decision support.
 
-The system combines rule-based correlation, risk scoring, and AI-assisted analysis to provide alert explanations, incident summaries, and recommended next actions through an interactive security dashboard.
+Core workflow
 
----
+Detect → Analyse → Recommend → Act
+
+The system helps users move from a disruption event to an actionable operational recommendation through a unified executive dashboard.
 
 ## ✨ Key Features
 
@@ -52,9 +54,10 @@ The system combines rule-based correlation, risk scoring, and AI-assisted analys
 | **Languages** | JavaScript, HTML, CSS |
 | **Frontend** | React |
 | **Backend** | Node.js, Express.js |
-| **IBM Technologies** | IBM Bob |
+| **IBM Technologies** | IBM watsonx.ai, IBM Bob |
 | **IBM Technologies** | Claude, Antigravity |
 | **Databases** | MongoDB |
+| **Maps** | Leaflet+React-Leaflet |
 | **Other** | Docker, GitHub, Vite |
 
 ---
@@ -207,18 +210,21 @@ docker compose up --build
 
 ## ⚠️ Known Limitations
 
-- The current prototype uses simulated/sample security alert data rather than direct  production SIEM and sensor integrations.
--Threat correlation and risk scoring are designed as a hackathon prototype and would require further validation with real-world security datasets.
--AI-generated explanations and recommendations should be reviewed by a qualified security analyst before being used for real incident-response decisions.
--Authentication and access control may be simplified for the hackathon prototype.
--The system has been tested primarily in a development environment and may require additional testing and optimization before production deployment.
--Real-time integrations with external security platforms are not included in the initial prototype.
+-The prototype uses simulated/sample operational data rather than live enterprise supply-chain feeds.
+-Route recommendations are based on available route and disruption information and would require integration with real-time mapping and traffic services for production deployment.
+-Fleet redeployment recommendations depend on the accuracy and availability of fleet location, capacity, and status data.
+-IoT cold-chain monitoring currently depends on available/simulated sensor readings rather than direct physical IoT devices.
+-Risk scoring and temperature severity classification are designed for prototype decision support and would require validation against real operational and regulatory datasets before production use.
+-Authentication, security, scalability, and enterprise integrations would require additional hardening for production deployment.
 ---
 
 ## 🏅 What We're Most Proud Of
 
-We are most proud of transforming a large and complex security-alert problem into an analyst-friendly workflow that combines alert correlation, risk-based prioritisation, and AI-assisted explanations in a single dashboard.
+We are most proud of building an end-to-end decision-support platform that connects disruption detection, shipment risk analysis, route recommendations, fleet optimisation, and cold-chain monitoring into one workflow.
 
-Instead of requiring analysts to investigate every alert independently, our solution helps them quickly identify the most important incidents, understand why they matter, discover related alerts, and receive actionable recommendations — demonstrating how AI can support faster and more informed security operations.
+Instead of only showing supply-chain data, our solution focuses on the next operational decision:
 
+Detect → Analyse → Recommend → Act
+
+The integration of an IBM Bob AI Copilot further allows users to interact with the system naturally and understand why a particular shipment, route, or fleet action requires attention.
 ---
