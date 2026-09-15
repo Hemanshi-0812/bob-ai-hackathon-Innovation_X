@@ -55,7 +55,7 @@ The system helps users move from a disruption event to an actionable operational
 | **Frontend** | React |
 | **Backend** | Node.js, Express.js |
 | **IBM Technologies** | IBM watsonx.ai, IBM Bob |
-| **IBM Technologies** | Claude, Antigravity |
+| **AI** | Claude, Antigravity |
 | **Databases** | MongoDB |
 | **Maps** | Leaflet+React-Leaflet |
 | **Other** | Docker, GitHub, Vite |
@@ -216,6 +216,7 @@ docker compose up --build
 -IoT cold-chain monitoring currently depends on available/simulated sensor readings rather than direct physical IoT devices.
 -Risk scoring and temperature severity classification are designed for prototype decision support and would require validation against real operational and regulatory datasets before production use.
 -Authentication, security, scalability, and enterprise integrations would require additional hardening for production deployment.
+
 ---
 
 ## 🏅 What We're Most Proud Of
@@ -227,4 +228,5 @@ Instead of only showing supply-chain data, our solution focuses on the next oper
 Detect → Analyse → Recommend → Act
 
 The integration of an IBM Bob AI Copilot further allows users to interact with the system naturally and understand why a particular shipment, route, or fleet action requires attention.
+
 ---
